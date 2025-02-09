@@ -7,9 +7,11 @@ public class Calculation {
     private int u1;
     private int u2;
     private int u3;
+    
     private int v1;
     private int v2;
     private int v3;
+    
     private int q;
     private int a;
     private int b;
@@ -41,8 +43,15 @@ public class Calculation {
             u1, v1, u2, v2, u3, v3, q));
     }
 
+    
     public int gcd(){
+        // find the smaller value between the a and b
         int val = Math.min(a, b);
+
+        // recusion formate
+        // while that value is greater than zero
+        // if the reminder of a and b divided by the value is 0 then stop/exit
+        // 
         while(val > 0){
             if((a%val) == 0 && (b%val) == 0){
                 break;

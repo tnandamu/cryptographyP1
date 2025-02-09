@@ -1,6 +1,10 @@
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
+/*
+ * Basis of the algorithm is based on the use of the Euclidean Algorithm
+ */
+
 public class Calculation {
     private int u1;
     private int u2;
@@ -49,14 +53,21 @@ public class Calculation {
 
     public int[] modCalc(String outputFile) throws Exception {
         writer = new PrintWriter(new FileWriter(outputFile));
+
+        //compute the gcd
         int gcd = gcd();
 
-        // Print header and initial values
+        //print header and initial values
         printTableHeader();
         printRow();
 
+        //perform the euclidean algorithm
         while(v3 != 0){
+
+            //compute q the quotient for integer division
             q = u3/v3;
+
+            //update the coefficents 
             int tempV1 = u1 - (q*v1);
             u1 = v1;
             v1 = tempV1;
@@ -69,16 +80,20 @@ public class Calculation {
             u3 = v3;
             v3 = tempV3;
 
+            //print the updated row
             printRow();
         }
 
         writer.close();
 
+        //verify that the coefficents we computed satisfy the conditions of a*x + b*y = gcd(a, b)
         if(((u1*a) + (u2*b)) == gcd){
-            return new int[]{u1, u2};
+            //return the valid coefficents
+            return new int[]{u1, u2};   
         }else if(((u2*a) + (u1*b)) == gcd){
             return new int[]{u2, u1};
         }
+        //error case
         return new int[]{-1, -1};
     }
 

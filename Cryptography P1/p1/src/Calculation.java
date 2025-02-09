@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 
 public class Calculation {
+    // fields of the respective variables
     private int u1;
     private int u2;
     private int u3;
@@ -17,6 +18,9 @@ public class Calculation {
     private int b;
     private static PrintWriter writer;  // Made static to share across instances
 
+    // is the public constructor for the Calculation class, which takes two 
+    // integer parameters, aIn and bIn. It initializes the new object with 
+    // the provided values.
     public Calculation(int aIn, int bIn){
         u1 = 1;
         v1 = 0;
@@ -29,6 +33,7 @@ public class Calculation {
         q = 0;
     }
 
+    // using printWriting to print headers of the respected values
     private void printTableHeader() {
         writer.println("\nCalculation for a = " + a + ", b = " + b);
         writer.println("GCD = " + gcd());
@@ -38,6 +43,7 @@ public class Calculation {
         writer.println("-".repeat(70));
     }
 
+    // using printWriter to print the rows into the outfile
     private void printRow() {
         writer.println(String.format("%-10d %-10d %-10d %-10d %-10d %-10d %-10d",
             u1, v1, u2, v2, u3, v3, q));

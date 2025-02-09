@@ -1,6 +1,5 @@
 // Tarun Nandamudi, Anne Fu, Dhruv Shah, Stephen Argauer
 // The following code can be run in a Java Project to get the GCD and Modular Artihmetic Calculation Table
-
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
@@ -14,7 +13,7 @@ public class Calculation {
     private int q;
     private int a;
     private int b;
-    private PrintWriter writer;
+    private static PrintWriter writer;  // Made static to share across instances
 
     public Calculation(int aIn, int bIn){
         u1 = 1;
@@ -29,6 +28,9 @@ public class Calculation {
     }
 
     private void printTableHeader() {
+        writer.println("\nCalculation for a = " + a + ", b = " + b);
+        writer.println("GCD = " + gcd());
+        writer.println();
         writer.println(String.format("%-10s %-10s %-10s %-10s %-10s %-10s %-10s", 
             "u1", "v1", "u2", "v2", "u3", "v3", "q"));
         writer.println("-".repeat(70));
@@ -50,10 +52,7 @@ public class Calculation {
         return val;
     }
 
-    public int[] modCalc(String outputFile) throws Exception {
-        writer = new PrintWriter(new FileWriter(outputFile));
-        int gcd = gcd();
-
+    public int[] modCalc() throws Exception {
         // Print header and initial values
         printTableHeader();
         printRow();
@@ -75,30 +74,43 @@ public class Calculation {
             printRow();
         }
 
-        writer.close();
-
+        int[] result;
+        int gcd = gcd();
         if(((u1*a) + (u2*b)) == gcd){
-            return new int[]{u1, u2};
+            result = new int[]{u1, u2};
         }else if(((u2*a) + (u1*b)) == gcd){
-            return new int[]{u2, u1};
+            result = new int[]{u2, u1};
+        } else {
+            result = new int[]{-1, -1};
         }
-        return new int[]{-1, -1};
+
+        writer.println("\nResult: x = " + result[0] + ", y = " + result[1]);
+        writer.println("-".repeat(70));
+        return result;
     }
 
     public static void main(String[] args) throws Exception {
+        // Initialize single output file
+        writer = new PrintWriter(new FileWriter("output.txt"));
+        writer.println("Modular Arithmetic Calculations");
+        writer.println("==============================\n");
+
         Calculation calc1 = new Calculation(256112, 46064);
         System.out.println(calc1.gcd());
-        int[] ans1 = calc1.modCalc("output1.txt");
+        int[] ans1 = calc1.modCalc();
         System.out.println("x: " + ans1[0] + " y: " + ans1[1]);
 
         Calculation calc2 = new Calculation(1042128, 445295);
         System.out.println(calc2.gcd());
-        int[] ans2 = calc2.modCalc("output2.txt");
+        int[] ans2 = calc2.modCalc();
         System.out.println("x: " + ans2[0] + " y: " + ans2[1]);
 
         Calculation calc3 = new Calculation(17601969, 2364768);
         System.out.println(calc3.gcd());
-        int[] ans3 = calc3.modCalc("output3.txt");
+        int[] ans3 = calc3.modCalc();
         System.out.println("x: " + ans3[0] + " y: " + ans3[1]);
+
+        // Close the writer after all calculations are done
+        writer.close();
     }
 }

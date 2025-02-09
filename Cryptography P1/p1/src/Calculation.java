@@ -1,4 +1,5 @@
 // Tarun Nandamudi, Anne Fu, Dhruv Shah, Stephen Argauer
+// The following code can be run in a Java Project to get the GCD and Modular Artihmetic Calculation Table
 
 import java.io.FileWriter;
 import java.io.PrintWriter;

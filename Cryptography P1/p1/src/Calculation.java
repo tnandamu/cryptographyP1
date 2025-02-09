@@ -104,9 +104,13 @@ public class Calculation {
         writer.println("Modular Arithmetic Calculations");
         writer.println("==============================\n");
 
+        // Creates a new calculation object which will, initialize u1-u3, v1-v3, a, b, and q variables based on given input
         Calculation calc1 = new Calculation(256112, 46064);
+        // Prints the gcd calculated for a and b in terminal
         System.out.println(calc1.gcd());
-        int[] ans1 = calc1.modCalc();
+        // Calls modCalc method in order to get the x and y variables to solve the equation ax + by = gcd
+        int[] ans1 = calc1.modCalc(); // Will print table in the modCalc method as well to the output.txt file
+        // Prints the x and y out into the terminal
         System.out.println("x: " + ans1[0] + " y: " + ans1[1]);
 
         // Creates a new calculation object which will, initialize u1-u3, v1-v3, a, b, and q variables based on given input

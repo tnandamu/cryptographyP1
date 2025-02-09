@@ -66,8 +66,12 @@ public class Calculation {
         printTableHeader();
         printRow();
 
+        //use the euclidean algorithm
         while(v3 != 0){
+            //compute the quotient needed for integer division
             q = u3/v3;
+
+            //update the coefficents for linear combination
             int tempV1 = u1 - (q*v1);
             u1 = v1;
             v1 = tempV1;
@@ -80,19 +84,27 @@ public class Calculation {
             u3 = v3;
             v3 = tempV3;
 
+            //print the updated row
             printRow();
         }
 
         int[] result;
+
+        //calculate and store the gcd
         int gcd = gcd();
+
+        //verify the coefficients satisfy the equation: a*x + b*y = gcd(a, b)
         if(((u1*a) + (u2*b)) == gcd){
+            //return the valid coefficents 
             result = new int[]{u1, u2};
         }else if(((u2*a) + (u1*b)) == gcd){
             result = new int[]{u2, u1};
         } else {
+            //error case
             result = new int[]{-1, -1};
         }
 
+        //print the results
         writer.println("\nResult: x = " + result[0] + ", y = " + result[1]);
         writer.println("-".repeat(70));
         return result;

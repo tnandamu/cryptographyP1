@@ -109,14 +109,22 @@ public class Calculation {
         int[] ans1 = calc1.modCalc();
         System.out.println("x: " + ans1[0] + " y: " + ans1[1]);
 
+        // Creates a new calculation object which will, initialize u1-u3, v1-v3, a, b, and q variables based on given input
         Calculation calc2 = new Calculation(1042128, 445295);
+        // Prints the gcd calculated for a and b in terminal
         System.out.println(calc2.gcd());
-        int[] ans2 = calc2.modCalc();
+        // Calls modCalc method in order to get the x and y variables to solve the equation ax + by = gcd
+        int[] ans2 = calc2.modCalc(); // Will print table in the modCalc method as well to the output.txt file
+        // Prints the x and y out into the terminal
         System.out.println("x: " + ans2[0] + " y: " + ans2[1]);
 
+        // Creates a new calculation object which will, initialize u1-u3, v1-v3, a, b, and q variables based on given input
         Calculation calc3 = new Calculation(17601969, 2364768);
+        // Prints the gcd calculated for a and b in terminal
         System.out.println(calc3.gcd());
-        int[] ans3 = calc3.modCalc();
+        // Calls modCalc method in order to get the x and y variables to solve the equation ax + by = gcd
+        int[] ans3 = calc3.modCalc(); // Will print table in the modCalc method as well to the output.txt file
+        // Prints the x and y out into the terminal
         System.out.println("x: " + ans3[0] + " y: " + ans3[1]);
 
         // Close the writer after all calculations are done
